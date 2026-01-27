@@ -4,7 +4,6 @@ import openpyxl
 def TP3_Exercice1():
     file = "exercice1.xlsx"
     wb = openpyxl.load_workbook(file)
-    
     ws = wb["Données"]
     n = ws.cell(1, 2).value  
     capacity = ws.cell(2, 2).value  
