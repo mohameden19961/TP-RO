@@ -8,7 +8,7 @@ def TP3_Exercice1():
     n = ws.cell(1, 2).value  
     capacity = ws.cell(2, 2).value  
     benefice = [ws.cell(4, 2+i).value for i in range(n)]  
-    poids = [ws.cell(5, 2+i).value for i in range(n)]  
+    poids = [ws.cell(5, 2+i).value for iCBC_MIXED_INTEGER_PROGRAMMING in range(n)]  
     
     print(f"Nombre d'objets: {n}")
     print(f"Capacité de la camionnette: {capacity} kg")
