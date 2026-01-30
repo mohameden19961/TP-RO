@@ -8,7 +8,8 @@ def TP3_Exercice1():
     n = ws.cell(1, 2).value  
     capacity = ws.cell(2, 2).value  
     benefice = [ws.cell(4, 2+i).value for i in range(n)]  
-    poids = [ws.cell(5, 2+i).value for iCBC_MIXED_INTEGER_PROGRAMMING in range(n)]  
+    poids = [ws.cell(5, 2+i).value for i in range(n)]  
+    
     
     print(f"Nombre d'objets: {n}")
     print(f"Capacité de la camionnette: {capacity} kg")
@@ -21,14 +22,15 @@ def TP3_Exercice1():
     for i in range(n):
         X.append(solver.IntVar(0, 1, f'X[{i}]'))
     
+    
 
     objective = solver.Objective()
     for i in range(n):
         objective.SetCoefficient(X[i], benefice[i])
     objective.SetMaximization()
     
-    contrainte_capacite = solver.Constraint(-infinity, capacity, 'capacite')
 
+    contrainte_capacite = solver.Constraint(-infinity, capacity, 'capacite')
     for i in range(n):
         contrainte_capacite.SetCoefficient(X[i], poids[i])
     
@@ -36,7 +38,7 @@ def TP3_Exercice1():
 
     if status == pywraplp.Solver.OPTIMAL:
         print("Solution optimale trouvée!")
-        print(f"Bénéfice optimal: {solver.Objective().Value()}")
+        print(f"Bénéfice optimal: {solver.Objective().Value()}") 
     
         ws = wb["Résultats"]
         ws['B1'] = solver.Objective().Value()  
