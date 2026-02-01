@@ -1,0 +1,18 @@
+from ortools.linear_solver import pywraplp
+def TP1_Exo1():
+    solver = pywraplp.Solver('TP1_Exo1', pywraplp.Solver.GLOP_LINEAR_PROGRAMMING)
+    infinity = solver.infinity()
+    x = solver.NumVar(0, infinity, 'x')
+    y = solver.NumVar(0, infinity, 'y')
+    print('Nombre des variables =', solver.NumVariables())
+    solver.Maximize(3*x + 1*y)
+    solver.Add(1*x + 1*y >= 3)
+    solver.Add(2*x + 1*y <= 5)
+    solver.Add(1*y>=2)
+    print('Nombre des contraintes =', solver.NumConstraints())
+    solver.Solve()
+    print('Solution:')
+    print('Valeur optimale =', solver.Objective().Value())
+    print('x =', x.solution_value())
+    print('y =', y.solution_value())
+TP1_Exo1()
